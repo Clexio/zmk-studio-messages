@@ -16,6 +16,7 @@ message Request {
         RemoveLayerRequest remove_layer = 10;
         RestoreLayerRequest restore_layer = 11;
         SetLayerPropsRequest set_layer_props = 12;
+        SetLayerKeyNameRequest set_layer_key_name = 13;
     }
 }
 
@@ -33,6 +34,7 @@ message Response {
         RemoveLayerResponse remove_layer = 10;
         RestoreLayerResponse restore_layer = 11;
         SetLayerPropsResponse set_layer_props = 12;
+        SetLayerKeyNameResponse set_layer_key_name = 13;
     }
 }
 
@@ -173,6 +175,19 @@ message SetLayerPropsRequest {
     string name = 2;
 }
 
+message SetLayerKeyNameRequest {
+    uint32 layer_id = 1;
+    uint32 key_position = 2;
+    string name = 3;
+}
+
+enum SetLayerKeyNameResponse {
+    SET_LAYER_KEY_NAME_RESP_OK = 0;
+    SET_LAYER_KEY_NAME_RESP_ERR_GENERIC = 1;
+    SET_LAYER_KEY_NAME_RESP_ERR_INVALID_LAYER = 2;
+    SET_LAYER_KEY_NAME_RESP_ERR_INVALID_POSITION = 3;
+}
+
 message Keymap {
     repeated Layer layers = 1;
     uint32 available_layers = 2;
@@ -183,6 +198,12 @@ message Layer {
     uint32 id = 1;
     string name = 2;
     repeated BehaviorBinding bindings = 3;
+    repeated KeyPositionName key_names = 4;
+}
+
+message KeyPositionName {
+    uint32 key_position = 1;
+    string name = 2;
 }
 
 message BehaviorBinding {
