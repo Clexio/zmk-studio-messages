@@ -209,6 +209,7 @@ message Keymap {
     uint32 available_layers = 2;
     uint32 max_layer_name_length = 3;
     uint32 sensor_count = 4;
+    repeated uint32 sensor_positions = 5;
 }
 
 message Layer {
