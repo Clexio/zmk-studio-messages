@@ -17,6 +17,7 @@ message Request {
         RestoreLayerRequest restore_layer = 11;
         SetLayerPropsRequest set_layer_props = 12;
         SetLayerKeyNameRequest set_layer_key_name = 13;
+        SetLayerSensorBindingRequest set_layer_sensor_binding = 14;
     }
 }
 
@@ -35,6 +36,7 @@ message Response {
         RestoreLayerResponse restore_layer = 11;
         SetLayerPropsResponse set_layer_props = 12;
         SetLayerKeyNameResponse set_layer_key_name = 13;
+        SetLayerSensorBindingResponse set_layer_sensor_binding = 14;
     }
 }
 
@@ -188,10 +190,25 @@ enum SetLayerKeyNameResponse {
     SET_LAYER_KEY_NAME_RESP_ERR_INVALID_POSITION = 3;
 }
 
+enum SetLayerSensorBindingResponse {
+    SET_LAYER_SENSOR_BINDING_RESP_OK = 0;
+    SET_LAYER_SENSOR_BINDING_RESP_ERR_INVALID_LAYER = 1;
+    SET_LAYER_SENSOR_BINDING_RESP_ERR_INVALID_SENSOR_POSITION = 2;
+    SET_LAYER_SENSOR_BINDING_RESP_ERR_INVALID_BEHAVIOR = 3;
+    SET_LAYER_SENSOR_BINDING_RESP_ERR_INVALID_PARAMETERS = 4;
+}
+
+message SetLayerSensorBindingRequest {
+    uint32 layer_id = 1;
+    uint32 sensor_position = 2;
+    BehaviorBinding binding = 3;
+}
+
 message Keymap {
     repeated Layer layers = 1;
     uint32 available_layers = 2;
     uint32 max_layer_name_length = 3;
+    uint32 sensor_count = 4;
 }
 
 message Layer {
@@ -199,6 +216,7 @@ message Layer {
     string name = 2;
     repeated BehaviorBinding bindings = 3;
     repeated KeyPositionName key_names = 4;
+    repeated BehaviorBinding sensor_bindings = 5;
 }
 
 message KeyPositionName {
