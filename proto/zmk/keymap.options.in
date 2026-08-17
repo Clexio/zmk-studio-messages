@@ -1,2 +1,3 @@
 zmk.keymap.SetLayerPropsRequest.name max_size:@CONFIG_ZMK_KEYMAP_LAYER_NAME_MAX_LEN@ fixed_length:true
 zmk.keymap.SetLayerKeyNameRequest.name max_size:@CONFIG_ZMK_KEY_POSITION_NAME_MAX_LEN@ fixed_length:true
+zmk.keymap.KnobSensitivityGetResponse.sensitivities max_count:16

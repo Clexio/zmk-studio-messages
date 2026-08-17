@@ -18,6 +18,8 @@ message Request {
         SetLayerPropsRequest set_layer_props = 12;
         SetLayerKeyNameRequest set_layer_key_name = 13;
         SetLayerSensorBindingRequest set_layer_sensor_binding = 14;
+        GetKnobSensitivityRequest get_knob_sensitivity = 15;
+        SetKnobSensitivityRequest set_knob_sensitivity = 16;
     }
 }
 
@@ -37,6 +39,8 @@ message Response {
         SetLayerPropsResponse set_layer_props = 12;
         SetLayerKeyNameResponse set_layer_key_name = 13;
         SetLayerSensorBindingResponse set_layer_sensor_binding = 14;
+        KnobSensitivityGetResponse get_knob_sensitivity = 15;
+        SetKnobSensitivityResponse set_knob_sensitivity = 16;
     }
 }
 
@@ -202,6 +206,24 @@ message SetLayerSensorBindingRequest {
     uint32 layer_id = 1;
     uint32 sensor_position = 2;
     BehaviorBinding binding = 3;
+}
+
+message GetKnobSensitivityRequest {
+}
+
+message KnobSensitivityGetResponse {
+    repeated uint32 sensitivities = 1;
+}
+
+message SetKnobSensitivityRequest {
+    uint32 layer_id = 1;
+    uint32 sensitivity = 2;
+}
+
+enum SetKnobSensitivityResponse {
+    SET_KNOB_SENSITIVITY_RESP_OK = 0;
+    SET_KNOB_SENSITIVITY_RESP_ERR_INVALID_LAYER = 1;
+    SET_KNOB_SENSITIVITY_RESP_ERR_INVALID_VALUE = 2;
 }
 
 message Keymap {
