@@ -14,6 +14,7 @@ message Request {
         bool lock = 3;
         bool reset_settings = 4;
         bool reboot_to_bootloader = 5;
+        bool clear_all_bonds = 6;
     }
 }
 
@@ -22,6 +23,7 @@ message Response {
         GetDeviceInfoResponse get_device_info = 1;
         LockState get_lock_state = 2;
         bool reset_settings = 4;
+        bool clear_all_bonds = 6;
     }
 }
 
